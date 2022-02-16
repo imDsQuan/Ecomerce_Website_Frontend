@@ -68,4 +68,26 @@ export class CreateOrderComponent implements OnInit {
     let searchData = document.querySelector(".search-data");
     (searchData as HTMLElement).style.display = "none";
   }
+
+  addQuantity(id: any) {
+    let index = -1;
+    for (let i = 0; i < this.orderList.length; i++){
+      if (this.orderList[i].id === id)
+        index = i;
+    }
+    if (index > -1){
+      this.orderList[index].quantity++;
+    }
+  }
+
+  subQuantity(id: any) {
+    let index = -1;
+    for (let i = 0; i < this.orderList.length; i++){
+      if (this.orderList[i].id === id)
+        index = i;
+    }
+    if (index > -1){
+      this.orderList[index].quantity--;
+    }
+  }
 }
