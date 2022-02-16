@@ -92,3 +92,7 @@ table tr .row-product {
 .row-product div span{
   text-align: center;
 }
+
+.home-section .button {
+  padding: 10px;
+}

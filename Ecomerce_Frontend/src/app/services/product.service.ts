@@ -16,7 +16,12 @@ export class ProductService {
     return this.http.get(`${this.baseUrl}`);
   }
 
-  delete(id: any){
-    return this.http.delete(`${this.baseUrl}`, id);
+  onDelete(id: any){
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  getProduct(name: string){
+    // @ts-ignore
+    return this.http.post(`${this.baseUrl}/search?name=${name}`);
   }
 }

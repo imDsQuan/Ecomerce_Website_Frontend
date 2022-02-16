@@ -1,3 +1,4 @@
+<script src="../admin-login/admin-login.component.spec.ts"></script>
 <app-sidebar></app-sidebar>
 <section class="home-section">
   <nav>
@@ -21,11 +22,11 @@
     <table class="layout display responsive-table">
       <thead>
       <tr>
-        <th class="id">Id</th>
-        <th class="name">Name</th>
-        <th class="description">Description</th>
-        <th>Price</th>
-        <th>Action</th>
+        <th class="id text-light">Id</th>
+        <th class="name text-light">Name</th>
+        <th class="description text-light">Description</th>
+        <th class="text-light">Price</th>
+        <th class="text-light">Action</th>
       </tr>
       </thead>
       <tbody>
@@ -40,8 +41,8 @@
           <td class="organisationname">{{product.description}}</td>
           <td>${{product.price}}</td>
           <td class="actions">
-            <a href="#" class="edit-item" title="Edit">Edit</a>
-            <a href="#" (click)="onDelete(product.id)" class="remove-item" title="Remove">Remove</a>
+            <a class="edit-item" title="Edit">Edit</a>
+            <a (click)="onDelete(product.id)" class="remove-item" title="Remove">Remove</a>
           </td>
         </tr>
       </tbody>

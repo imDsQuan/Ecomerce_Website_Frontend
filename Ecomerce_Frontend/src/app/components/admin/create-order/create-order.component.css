@@ -88,5 +88,18 @@ table tbody tr i{
   right: 0;
 }
 
+.home-section .order-button{
+  padding: 12px 20px;
+  float:right;
+  background: #0A2558;
+  margin-top: 30px;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+.home-section .order-button a{
+  color: #fff;
+}
+
 
 
