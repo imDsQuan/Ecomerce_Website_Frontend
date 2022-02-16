@@ -16,7 +16,7 @@
   <div class="page">
     <h2>All Products</h2>
     <div class="button">
-      <a href="#">Create New Product</a>
+      <a routerLink="/admin/product/create">Create New Product</a>
     </div>
     <table class="layout display responsive-table">
       <thead>
@@ -29,19 +29,19 @@
       </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="organisationnumber">2</td>
+        <tr *ngFor="let product of products">
+          <td class="organisationnumber">{{product.id}}</td>
           <td>
-            <div class="row">
-              <img src="assets/images/book/01.jpg" alt="" class="img-product">
-              <div>Basic Long Sleeve T-shirt fa;lskdjf;l as;ldfja;sldk fl;asdj fl;asd fls;adf</div>
+            <div class="row-product">
+              <img src="{{product.image_path}}" alt="" class="img-product">
+              <div><span>{{product.name}}</span></div>
             </div>
           </td>
-          <td class="organisationname">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</td>
-          <td></td>
+          <td class="organisationname">{{product.description}}</td>
+          <td>${{product.price}}</td>
           <td class="actions">
-            <a href="?" class="edit-item" title="Edit">Edit</a>
-            <a href="?" class="remove-item" title="Remove">Remove</a>
+            <a href="#" class="edit-item" title="Edit">Edit</a>
+            <a href="#" (click)="onDelete(product.id)" class="remove-item" title="Remove">Remove</a>
           </td>
         </tr>
       </tbody>

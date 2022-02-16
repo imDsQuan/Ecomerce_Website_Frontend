@@ -13,6 +13,8 @@ import {
 import {AdminBeforeLoginService} from "./services/admin-before-login.service";
 import {AdminAfterLoginService} from "./services/admin-after-login.service";
 import {ProductsComponent} from "./components/admin/products/products.component";
+import {CreateProductComponent} from "./components/admin/create-product/create-product.component";
+import {CreateOrderComponent} from "./components/admin/create-order/create-order.component";
 
 const routes: Routes = [
   {
@@ -33,6 +35,18 @@ const routes: Routes = [
   {
     path: 'admin/product',
     component: ProductsComponent,
+    canActivate: [AdminAfterLoginService]
+
+  },
+  {
+    path: 'admin/product/create',
+    component: CreateProductComponent,
+    canActivate: [AdminAfterLoginService]
+
+  },
+  {
+    path: 'admin/order/create',
+    component: CreateOrderComponent,
     canActivate: [AdminAfterLoginService]
 
   },

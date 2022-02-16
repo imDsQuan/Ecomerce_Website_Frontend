@@ -78,3 +78,17 @@ table td .img-product{
   height: 80px;
   object-fit: cover;
 }
+
+table tr .row-product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row-product div{
+  margin: auto;
+}
+
+.row-product div span{
+  text-align: center;
+}

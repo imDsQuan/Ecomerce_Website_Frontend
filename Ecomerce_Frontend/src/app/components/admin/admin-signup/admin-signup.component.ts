@@ -50,11 +50,11 @@ export class AdminSignupComponent implements OnInit {
 
   // @ts-ignore
    handleError(error) {
-    this.error.first_name = error.error.errors.first_name;
-    this.error.last_name = error.error.errors.last_name;
-    this.error.username = error.error.errors.username;
-    this.error.email = error.error.errors.email;
-    this.error.password = error.error.errors.password;
+    this.error.first_name = error.error?.errors?.first_name;
+    this.error.last_name = error.error?.errors?.last_name;
+    this.error.username = error.error?.errors?.username;
+    this.error.email = error.error?.errors?.email;
+    this.error.password = error.error?.errors?.password;
 
     console.log(this.error);
 

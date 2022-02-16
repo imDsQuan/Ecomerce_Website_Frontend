@@ -31,7 +31,6 @@ export class AdminLoginComponent implements OnInit {
     })
   }
 
-
   onSubmit() {
     this.adService.login(this.loginForm.value).subscribe(
       data => this.handleResponse(data),
@@ -43,7 +42,6 @@ export class AdminLoginComponent implements OnInit {
   handleError(error){
     this.error = error.error.error;
   }
-
   handleResponse(data: Object) {
     // @ts-ignore
     this.token.handle(data.access_token);

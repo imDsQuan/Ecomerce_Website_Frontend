@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-
+@import '~bootstrap/dist/css/bootstrap.css';
 * {
   margin: 0;
   padding: 0;
@@ -648,7 +648,6 @@ table {
 th {
   text-align: left;
   padding: 5px;
-  color: #fff;
   background: #ff523b;
   font-weight: normal;
 }

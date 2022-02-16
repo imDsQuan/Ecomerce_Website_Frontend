@@ -18,6 +18,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ProductsComponent } from './components/admin/products/products.component';
 import { CreateProductComponent } from './components/admin/create-product/create-product.component';
 import { EditProductComponent } from './components/admin/edit-product/edit-product.component';
+import { CreateOrderComponent } from './components/admin/create-order/create-order.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { EditProductComponent } from './components/admin/edit-product/edit-produ
     ProductsComponent,
     CreateProductComponent,
     EditProductComponent,
+    CreateOrderComponent,
 
   ],
   imports: [
