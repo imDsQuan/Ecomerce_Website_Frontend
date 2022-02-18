@@ -8,8 +8,16 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.td-order{
+  text-align: center !important;
+}
+
 ul{
   padding: 0;
+}
+
+.th-order{
+  background: #0A2558 !important;
 }
 
 .arrow {
@@ -46,6 +54,14 @@ ul{
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
+}
+.btn-submit{
+  background-color: #0A2558 !important;
+}
+
+.btn-submit:hover{
+  cursor: pointer;
+  color: #fff;
 }
 
 nav {
@@ -506,8 +522,8 @@ ul {
 
 select {
   border: 1px solid #ff523b;
-  padding: 5px;
-  font-size: 16px;
+  padding: 4px;
+  font-size: 12px;
   font-weight: 500;
 }
 
@@ -742,12 +758,10 @@ input:focus {
   max-width: 400px;
 }
 
-td:last-child {
-  text-align: right;
-}
+
 
 th:last-child {
-  text-align: right;
+  text-align: center;
 }
 
 
@@ -1280,12 +1294,46 @@ input:focus {
   color: #888;
 }
 
+.find-cus .search-box .search-data-customer{
+  position: absolute;
+  top: 32px;
+  background: #fff;
+  width: inherit;
+  display: none;
+  flex-direction: column;
+  border-radius: 4px;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+
+}
+
+.find-cus .search-box .search-data-customer span{
+  display: block;
+  padding: 5px 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.find-cus .search-box .search-data-customer span:hover{
+  cursor: pointer;
+  background: #ccc;
+}
+
+.find-cus .search-box .search-data span:last-child{
+  border-bottom: none;
+}
+
 .sales-boxes .top-sales li {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 10px 0;
 }
+
+.sales-boxes .top-sales .payment_input{
+  display: inline-block;
+  margin-right: 8px;
+}
+
 
 .sales-boxes .top-sales li a img {
   height: 40px;
@@ -1300,6 +1348,9 @@ input:focus {
   display: flex;
   align-items: flex-start;
   text-decoration: none;
+}
+
+.sales-boxes .top-sales li .item-order {
   flex-direction: column;
 }
 
@@ -1525,6 +1576,52 @@ input:focus {
   text-align: center;
 }
 
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 55%;
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  color: #aaaaaa;
+  right: 16px;
+  top: 0;
+  font-size: 28px;
+  font-weight: bold;
+  z-index: 100;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content form{
+  width: 70%;
+  margin: auto;
+}
 
 /* Responsive Media Query */
 

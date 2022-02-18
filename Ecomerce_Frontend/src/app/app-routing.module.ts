@@ -15,6 +15,7 @@ import {AdminAfterLoginService} from "./services/admin-after-login.service";
 import {ProductsComponent} from "./components/admin/products/products.component";
 import {CreateProductComponent} from "./components/admin/create-product/create-product.component";
 import {CreateOrderComponent} from "./components/admin/create-order/create-order.component";
+import {OrderComponent} from "./components/admin/order/order.component";
 
 const routes: Routes = [
   {
@@ -54,6 +55,12 @@ const routes: Routes = [
     path: 'admin/signup',
     component: AdminSignupComponent,
     canActivate: [AdminBeforeLoginService]
+
+  },
+  {
+    path: 'admin/order',
+    component: OrderComponent,
+    canActivate: [AdminAfterLoginService]
 
   },
   {

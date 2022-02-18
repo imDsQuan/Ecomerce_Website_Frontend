@@ -19,6 +19,7 @@ import { ProductsComponent } from './components/admin/products/products.componen
 import { CreateProductComponent } from './components/admin/create-product/create-product.component';
 import { EditProductComponent } from './components/admin/edit-product/edit-product.component';
 import { CreateOrderComponent } from './components/admin/create-order/create-order.component';
+import { OrderComponent } from './components/admin/order/order.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CreateOrderComponent } from './components/admin/create-order/create-ord
     CreateProductComponent,
     EditProductComponent,
     CreateOrderComponent,
+    OrderComponent,
 
   ],
   imports: [
