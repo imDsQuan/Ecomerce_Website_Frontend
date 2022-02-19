@@ -62,6 +62,6 @@ export class AdminSignupComponent implements OnInit {
 
   handleResponse(data:any){
     this.token.handle(data.access_token);
-    this.router.navigateByUrl('/admin/dashboard');
+    this.router.navigateByUrl('/admin');
   }
 }

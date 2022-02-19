@@ -136,8 +136,8 @@
                     <input class="form-check-input"
                            type="radio"
                            id="flexRadioDefault1"
-                            value="Male"
-                            formControlName="gender">
+                           value="Male"
+                           formControlName="gender">
                     <label class="form-check-label" for="flexRadioDefault1">
                       Male
                     </label>
@@ -216,12 +216,12 @@
           </li>
           <li>
             <div>
-              <input class="payment_input" type="radio" id="cod" name="payment_method" value="COD" checked>
+              <input class="payment_input" type="radio" id="cod" name="payment_method" value="COD" >
               <label for="cod">COD</label>
             </div>
             <div>
-             <input class="payment_input" type="radio" id="master_card" name="payment_method" value="Master Card">
-             <label for="master_card">Master Card</label>
+              <input class="payment_input" type="radio" id="master_card" name="payment_method" value="Master Card">
+              <label for="master_card">Master Card</label>
             </div>
           </li>
         </ul>
@@ -231,13 +231,13 @@
             <a href="#">
               <span class="product">Total</span>
             </a>
-            <span *ngIf="total>0">${{total}}</span>
+            <span >${{total}}</span>
         </ul>
       </div>
     </div>
   </div>
-  <div class="order-button" (click)="createOrder()">
-    <a>Place An Order</a>
+  <div>
+    <button class="btn float-end me-5" (click)="editOrder()">Save Changes</button>
   </div>
 </section>
 

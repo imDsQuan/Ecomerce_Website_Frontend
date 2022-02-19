@@ -16,6 +16,7 @@ import {ProductsComponent} from "./components/admin/products/products.component"
 import {CreateProductComponent} from "./components/admin/create-product/create-product.component";
 import {CreateOrderComponent} from "./components/admin/create-order/create-order.component";
 import {OrderComponent} from "./components/admin/order/order.component";
+import {EditOrderComponent} from "./components/admin/edit-order/edit-order.component";
 
 const routes: Routes = [
   {
@@ -28,7 +29,7 @@ const routes: Routes = [
     canActivate: [AdminBeforeLoginService]
   },
   {
-    path: 'admin/dashboard',
+    path: 'admin',
     component: DashboardComponent,
     canActivate: [AdminAfterLoginService]
 
@@ -48,6 +49,12 @@ const routes: Routes = [
   {
     path: 'admin/order/create',
     component: CreateOrderComponent,
+    canActivate: [AdminAfterLoginService]
+
+  },
+  {
+    path: 'admin/order/edit/:id',
+    component: EditOrderComponent,
     canActivate: [AdminAfterLoginService]
 
   },

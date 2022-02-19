@@ -20,7 +20,11 @@ export class OrderService {
     return this.http.get(this.baseUrl);
   }
 
-  changeStatus(value: any, id: any){
+  updateOrder(value: any, id: any){
     return this.http.put(`${this.baseUrl}/${id}`,value);
+  }
+
+  getOrder(id: any){
+    return this.http.get(`${this.baseUrl}/${id}`);
   }
 }

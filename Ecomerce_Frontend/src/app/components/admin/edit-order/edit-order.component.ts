@@ -1,81 +1,98 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from "../../../interfaces/product";
-import {ProductService} from "../../../services/product.service";
-import {debounceTime, distinctUntilChanged} from "rxjs";
-import {CustomerService} from "../../../services/customer.service";
-import {OrderItem} from "../../../interfaces/order-item";
-import {AddressService} from "../../../services/address.service";
-import {DeliveryServiceService} from "../../../services/delivery-service.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {ActivatedRoute, Route} from "@angular/router";
 import {OrderService} from "../../../services/order.service";
-import {HttpClient} from "@angular/common/http";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {DeliveryServiceService} from "../../../services/delivery-service.service";
+import {debounceTime, distinctUntilChanged} from "rxjs";
+import {ProductService} from "../../../services/product.service";
+import {CustomerService} from "../../../services/customer.service";
+import {AddressService} from "../../../services/address.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-create-order',
-  templateUrl: './create-order.component.html',
-  styleUrls: ['./create-order.component.css']
+  selector: 'app-edit-order',
+  templateUrl: './edit-order.component.html',
+  styleUrls: ['./edit-order.component.css']
 })
-export class CreateOrderComponent implements OnInit {
-
-
-  orderList: OrderItem[] = [];
-  searchProducts !: any;
-  searchCustomer !: any;
-  customer !: any;
-  address !: any;
-  deliveryServices !: any;
-  deliveryChoosed !:any
-  total !: any;
-  createCustomerForm!: FormGroup;
-  name !: any;
-  tel !: any;
+export class EditOrderComponent implements OnInit {
+  searchProducts: any;
+  orderList: any;
+  searchCustomer: any;
+  createCustomerForm !: FormGroup;
+  name: any;
+  address: any;
+  tel: any;
+  deliveryServices: any;
+  deliveryChoosed = {
+    id: null,
+    name: null,
+    price: null,
+  };
+  total: number | undefined;
+  orderInfo !: any;
+  customerId : any;
+  payment_method: any;
+  orderId : any;
 
   constructor(
+    private route: ActivatedRoute,
+    private os: OrderService,
+    private fb: FormBuilder,
+    private ds: DeliveryServiceService,
     private ps : ProductService,
     private cs: CustomerService,
     private as: AddressService,
-    private ds : DeliveryServiceService,
-    private fb: FormBuilder,
-    private os: OrderService,
-    private http: HttpClient,
-    private router: Router,
-  ) { }
+    private Router : Router
+  ) {
+    this.createCustomerForm = this.fb.group({
+      'first_name' : null,
+      'last_name': null,
+      'gender': null,
+      'dob' : null,
+      'tel' : null,
+      'homeNo' : null,
+      'street' : null,
+      'city' : null,
+      'district' : null,
+    })
+  }
 
   ngOnInit(): void {
-    this.getDeliveryService();
-    this.createCustomerForm = this.fb.group({
-        'first_name' : null,
-        'last_name': null,
-        'gender': null,
-        'dob' : null,
-        'tel' : null,
-        'homeNo' : null,
-        'street' : null,
-        'city' : null,
-        'district' : null,
-
+    this.orderId = this.route.snapshot.paramMap.get('id');
+    this.os.getOrder(this.orderId).subscribe(
+      data=>{
+        this.orderInfo = data;
+        console.log(this.orderInfo);
+        this.orderList = this.orderInfo['item'];
+        this.name = this.orderInfo['order'].name;
+        this.address = this.orderInfo['order'].address;
+        this.tel = this.orderInfo['order'].tel;
+        this.total = this.orderInfo['order'].total;
+        this.customerId = this.orderInfo['order'].customer_id;
+        this.deliveryChoosed['id'] = this.orderInfo['order'].deli_id;
+        this.deliveryChoosed['name'] = this.orderInfo['order'].deli_name;
+        this.deliveryChoosed['price'] = this.orderInfo['order'].deli_price;
+        this.payment_method = this.orderInfo['order'].payment_method;
+        this.onInitPaymnetMethod(this.payment_method);
+        this.ds.getAll().subscribe(
+          value => this.deliveryServices = value,
+          );
       }
     );
 
-
   }
 
-  getDeliveryService(){
-    this.ds.getAll().subscribe(
-      value => {
-        this.deliveryServices = value;
-        this.deliveryChoosed = this.deliveryServices[0];
+  onInitPaymnetMethod(payment_method : any){
+    // @ts-ignore
+    let payments = document.querySelectorAll('input[name="payment_method"]');
+    console.log(payments)
+    for( let i = 0; i < payments.length; i++){
+      // @ts-ignore
+      if (payments[i]?.value == payment_method){
+        // @ts-ignore
+        payments[i]?.checked = true;
       }
-    );
-  }
-
-  incrementValue($event: MouseEvent) {
-
-  }
-
-  decrementValue($event: MouseEvent) {
-
+    }
   }
 
   onSearchProduct(event : Event) {
@@ -87,10 +104,10 @@ export class CreateOrderComponent implements OnInit {
       this.ps.getProduct(event.target.value).pipe(
         debounceTime(1000), distinctUntilChanged())
         .subscribe(value => {
-          // @ts-ignore
+            // @ts-ignore
             this.searchProducts = value
-        },
-        error => console.log(error)
+          },
+          error => console.log(error)
         );
     } else{
       (searchData as HTMLElement).style.display = "none";
@@ -99,7 +116,9 @@ export class CreateOrderComponent implements OnInit {
 
   onSearchProductClick(product: any) {
     let ok = false;
+
     this.orderList.forEach(
+      // @ts-ignore
       p => {
         if (p.product.id == product.id){
           p.quantity ++;
@@ -181,7 +200,7 @@ export class CreateOrderComponent implements OnInit {
   }
 
   onSearchCustomerClick(customer: any) {
-    this.customer = customer;
+    this.customerId = customer.id;
     this.name = customer.first_name + ' ' + customer.last_name;
     this.tel = customer.tel;
     let searchData = document.querySelector(".search-data-customer");
@@ -210,6 +229,7 @@ export class CreateOrderComponent implements OnInit {
     let totalQuantity = 0;
     let totalPrice = 0;
     if (this.orderList) {
+      // @ts-ignore
       this.orderList.map(item => {
         totalQuantity += item.quantity;
         totalPrice += item.price * item.quantity;
@@ -220,6 +240,7 @@ export class CreateOrderComponent implements OnInit {
 
     this.total = totalPrice + Number(this.deliveryChoosed.price);
   }
+
 
   openModal(){
     var modal = document.getElementById("myModal");
@@ -244,35 +265,29 @@ export class CreateOrderComponent implements OnInit {
     )
   }
 
-  createOrder() {
-    // orderList: OrderItem[] = [];
-    // searchProducts !: any;
-    // searchCustomer !: any;
-    // customer !: any;
-    // address !: any;
-    // deliveryServices !: any;
-    // deliveryChoosed !:any
-    // total !: any;
-    const formData = new FormData();
-    console.log(JSON.stringify(this.orderList));
-    formData.append('order_items', JSON.stringify(this.orderList));
-    formData.append('customer', this.customer.id);
-    formData.append('address', this.address);
-    formData.append('deliveryService', this.deliveryChoosed.id);
-    formData.append('name', this.name);
-    formData.append('tel', this.tel);
-    formData.append('total', this.total);
-    // formData.append('payment_method', this.)
+  editOrder() {
     // @ts-ignore
-    let payment_method = document.querySelector('input[name="payment_method"]:checked').value;
-    formData.append('payment_method', payment_method);
-    this.os.createOrder(formData).subscribe(
-      data => this.handleRespone(data),
-      error=>console.log(error),
+    let pay_method = document.querySelector('input[name="payment_method"]:checked').value;
+
+    let data = {
+      'order_items': JSON.stringify(this.orderList),
+      'customer': this.customerId,
+      'address': this.address,
+      'deliveryService': this.deliveryChoosed.id,
+      'name': this.name,
+      'tel': this.tel,
+      'total': this.total,
+      'payment_method': pay_method
+    };
+
+    console.log(data);
+
+    this.os.updateOrder(data , this.orderId).subscribe(
+      data => this.handleResponse(data),
     );
   }
 
-  handleRespone(data: any){
-    this.router.navigateByUrl('/admin/order');
+  handleResponse(data :any){
+    this.Router.navigateByUrl('/admin/order');
   }
 }

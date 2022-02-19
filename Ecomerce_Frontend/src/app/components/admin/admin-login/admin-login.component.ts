@@ -45,7 +45,7 @@ export class AdminLoginComponent implements OnInit {
   handleResponse(data: Object) {
     // @ts-ignore
     this.token.handle(data.access_token);
-    this.router.navigateByUrl('/admin/dashboard');
+    this.router.navigateByUrl('/admin');
     this.Auth.changeAuthStatus(true);
   }
 }
