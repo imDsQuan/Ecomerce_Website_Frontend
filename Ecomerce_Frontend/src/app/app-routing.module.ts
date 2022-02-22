@@ -17,6 +17,7 @@ import {CreateProductComponent} from "./components/admin/create-product/create-p
 import {CreateOrderComponent} from "./components/admin/create-order/create-order.component";
 import {OrderComponent} from "./components/admin/order/order.component";
 import {EditOrderComponent} from "./components/admin/edit-order/edit-order.component";
+import {EditProductComponent} from "./components/admin/edit-product/edit-product.component";
 
 const routes: Routes = [
   {
@@ -24,16 +25,17 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'admin/login',
-    component: AdminLoginComponent,
-    canActivate: [AdminBeforeLoginService]
-  },
-  {
     path: 'admin',
     component: DashboardComponent,
     canActivate: [AdminAfterLoginService]
 
   },
+  {
+    path: 'admin/login',
+    component: AdminLoginComponent,
+    canActivate: [AdminBeforeLoginService]
+  },
+
   {
     path: 'admin/product',
     component: ProductsComponent,
@@ -43,6 +45,18 @@ const routes: Routes = [
   {
     path: 'admin/product/create',
     component: CreateProductComponent,
+    canActivate: [AdminAfterLoginService]
+
+  },
+  {
+    path: 'admin/product/edit/:id',
+    component: EditProductComponent,
+    canActivate: [AdminAfterLoginService]
+
+  },
+  {
+    path: 'admin/order',
+    component: OrderComponent,
     canActivate: [AdminAfterLoginService]
 
   },
@@ -64,12 +78,7 @@ const routes: Routes = [
     canActivate: [AdminBeforeLoginService]
 
   },
-  {
-    path: 'admin/order',
-    component: OrderComponent,
-    canActivate: [AdminAfterLoginService]
 
-  },
   {
     path: 'admin/request-password-reset',
     component: RequestResetPasswordComponent,

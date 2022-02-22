@@ -24,4 +24,12 @@ export class ProductService {
     // @ts-ignore
     return this.http.post(`${this.baseUrl}/search?name=${name}`);
   }
+
+  getProductById(id :any){
+    return this.http.get(`${this.baseUrl}/${id}`);
+  }
+
+  updateProduct(id: any, data: any) {
+    return this.http.put(`${this.baseUrl}/${id}`, data);
+  }
 }

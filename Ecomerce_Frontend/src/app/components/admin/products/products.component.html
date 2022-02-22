@@ -41,7 +41,7 @@
           <td class="organisationname">{{product.description}}</td>
           <td>${{product.price}}</td>
           <td class="actions">
-            <a class="edit-item" title="Edit">Edit</a>
+            <a routerLink="/admin/product/edit/{{product.id}}" class="edit-item" title="Edit">Edit</a>
             <a (click)="onDelete(product.id)" class="remove-item" title="Remove">Remove</a>
           </td>
         </tr>
