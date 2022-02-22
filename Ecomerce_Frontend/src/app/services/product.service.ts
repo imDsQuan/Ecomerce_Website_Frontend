@@ -30,6 +30,6 @@ export class ProductService {
   }
 
   updateProduct(id: any, data: any) {
-    return this.http.put(`${this.baseUrl}/${id}`, data);
+    return this.http.post(`${this.baseUrl}/${id}`, data);
   }
 }

@@ -222,7 +222,7 @@ export class CreateOrderComponent implements OnInit {
   }
 
   openModal(){
-    var modal = document.getElementById("myModal");
+    let modal = document.getElementById("myModal");
 
     (modal as HTMLElement).style.display = "block";
 

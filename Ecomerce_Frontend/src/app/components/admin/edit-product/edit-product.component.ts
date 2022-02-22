@@ -12,7 +12,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class EditProductComponent implements OnInit {
   editProductForm!: FormGroup;
-
+  url : any;
   product !: any
   private productId: any;
 
@@ -38,6 +38,7 @@ export class EditProductComponent implements OnInit {
     this.ps.getProductById(this.productId).subscribe(
       value => {
         this.product = value;
+        this.url = this.product.image_path;
         console.log(this.product)
         // @ts-ignore
         document.getElementById("categoryList").value=this.product.category_id;
@@ -50,10 +51,14 @@ export class EditProductComponent implements OnInit {
     if (event.target.files.length > 0) {
       // @ts-ignore
       const file = event.target.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload=(event: any) => {
+        this.url = event.target.result;
+      }
       this.editProductForm.patchValue({
         image_source: file
       })
-      // @
     }
 
   }
@@ -61,22 +66,19 @@ export class EditProductComponent implements OnInit {
   onSubmit() {
 
 
-    let data = {
-      // @ts-ignore
-      'image': document.getElementById("exampleFormControlFile1").value,
-      // @ts-ignore
-      'name': document.getElementById("exampleInputEmail1").value,
-      // @ts-ignore
-      'description': document.getElementById("exampleInputPassword1").value,
-      // @ts-ignore
-      'price' : document.getElementById("exampleInputPrice1").value,
-      // @ts-ignore
-      'category_id': document.getElementById("categoryList").value,
-    }
+    const formData = new FormData();
+    formData.append('image', this.editProductForm.get('image_source')?.value);
+    // @ts-ignore
+    formData.append('name', document.getElementById("exampleInputEmail1").value);
+    // @ts-ignore
+    formData.append('description', document.getElementById("exampleInputPassword1").value);
+    // @ts-ignore
+    formData.append('price', document.getElementById("exampleInputPrice1").value);
+    // @ts-ignore
+    formData.append('category_id', document.getElementById("categoryList").value);
 
-    console.log(data);
 
-    this.ps.updateProduct(this.productId, data).subscribe(
+    this.ps.updateProduct(this.productId, formData).subscribe(
       value => {
         console.log(value);
         this.Router.navigateByUrl("/admin/product");

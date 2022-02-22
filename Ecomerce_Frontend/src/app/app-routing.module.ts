@@ -18,6 +18,8 @@ import {CreateOrderComponent} from "./components/admin/create-order/create-order
 import {OrderComponent} from "./components/admin/order/order.component";
 import {EditOrderComponent} from "./components/admin/edit-order/edit-order.component";
 import {EditProductComponent} from "./components/admin/edit-product/edit-product.component";
+import {CustomerComponent} from "./components/admin/customer/customer.component";
+import {EditCustomerComponent} from "./components/admin/edit-customer/edit-customer.component";
 
 const routes: Routes = [
   {
@@ -69,6 +71,18 @@ const routes: Routes = [
   {
     path: 'admin/order/edit/:id',
     component: EditOrderComponent,
+    canActivate: [AdminAfterLoginService]
+
+  },
+  {
+    path: 'admin/customer',
+    component: CustomerComponent,
+    canActivate: [AdminAfterLoginService]
+
+  },
+  {
+    path: 'admin/customer/edit/:id',
+    component: EditCustomerComponent,
     canActivate: [AdminAfterLoginService]
 
   },

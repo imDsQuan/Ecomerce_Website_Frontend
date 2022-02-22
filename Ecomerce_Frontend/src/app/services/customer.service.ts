@@ -13,7 +13,7 @@ export class CustomerService {
   ) { }
 
   getAll(){
-
+    return this.http.get(`${this.baseUrl}`);
   }
 
   getCustomer(value: any){
@@ -23,5 +23,13 @@ export class CustomerService {
 
   createCustomer(value: any) {
     return this.http.post(this.baseUrl, value);
+  }
+
+  getCustomerById(id: any){
+    return this.http.get(`${this.baseUrl}/${id}`);
+  }
+
+  delete(id :any){
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 }
