@@ -32,4 +32,14 @@ export class CustomerService {
   delete(id :any){
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
+
+  updateCustomer(data: any, customerId: any) {
+    return this.http.put(`${this.baseUrl}/${customerId}`, data);
+  }
+
+  total(){
+    return this.http.get(`${this.baseUrl}/total`);
+  }
+
+
 }

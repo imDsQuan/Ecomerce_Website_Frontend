@@ -27,4 +27,16 @@ export class OrderService {
   getOrder(id: any){
     return this.http.get(`${this.baseUrl}/${id}`);
   }
+
+  recentOrder(){
+    return this.http.get(`${this.baseUrl}/recent`);
+  }
+
+  totalOrder(){
+    return this.http.get(`${this.baseUrl}/total`);
+  }
+
+  totalProfit(){
+    return this.http.get(`${this.baseUrl}/profit`);
+  }
 }

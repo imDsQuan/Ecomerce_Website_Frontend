@@ -42,7 +42,6 @@ export class EditCustomerComponent implements OnInit {
       value => {
         this.customer = value;
         this.onInitGender(this.customer.gender);
-        console.log(this.customer);
         this.editCustomerForm.patchValue({
           first_name: this.customer.first_name,
           last_name: this.customer.last_name,
@@ -50,15 +49,7 @@ export class EditCustomerComponent implements OnInit {
           gender: this.customer.gender,
           dob: this.customer.Dob,
         })
-        for(let i = 0 ;i < this.customer.address.length; i++)
-          this.addresses.push(
-            new FormGroup({
-              homeNo: new FormControl(this.customer.address[i].homeNo),
-              street: new FormControl(this.customer.address[i].street),
-              city: new FormControl(this.customer.address[i].city),
-              district: new FormControl(this.customer.address[i].district),
-            })
-          )
+
       }
     )
 
@@ -67,12 +58,12 @@ export class EditCustomerComponent implements OnInit {
   onInitGender(gender : any){
     // @ts-ignore
     let genders = document.querySelectorAll('input[type="radio"]');
-    console.log(genders)
+
     for( let i = 0; i < genders.length; i++){
       // @ts-ignore
-      if (genders[i]?.value.toLowerCase() == gender.toLowerCase()){
+      if (genders[i]?.value.toUpperCase() == gender.toUpperCase()){
         // @ts-ignore
-        genders[i]?.checked = true;
+        genders[i].checked = true;
       }
     }
   }
@@ -93,7 +84,23 @@ export class EditCustomerComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.editCustomerForm.value);
+    for(let i = 0 ;i < this.customer.address.length; i++)
+      this.addresses.push(
+        new FormGroup({
+          homeNo: new FormControl(this.customer.address[i].homeNo),
+          street: new FormControl(this.customer.address[i].street),
+          city: new FormControl(this.customer.address[i].city),
+          district: new FormControl(this.customer.address[i].district),
+        })
+      )
+      this.cs.updateCustomer(this.editCustomerForm.value, this.customerId).subscribe(
+        value => {
+          console.log(value);
+          this.router.navigateByUrl('/admin/customer');
+        }
+      );
+
+
   }
 
   openModal(add : any){

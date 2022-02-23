@@ -20,6 +20,10 @@ ul{
   background: #0A2558 !important;
 }
 
+.w-90{
+  width: 90% !important;
+}
+
 .arrow {
   border: solid #444;
   border-width: 0 3px 3px 0;
