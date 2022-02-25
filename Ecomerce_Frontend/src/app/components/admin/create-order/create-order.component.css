@@ -21,7 +21,7 @@
 
 .order-item-section .title{
   font-size: 18px;
-  font-size: 500;
+  font-weight: 500;
 
 }
 
@@ -65,7 +65,7 @@ table tbody tr i{
 
 .customer-section .title{
   font-size: 18px;
-  font-size: 500;
+  font-weight: 500;
 }
 
 .customer-section .search-cus {

@@ -189,7 +189,7 @@ export class CreateOrderComponent implements OnInit {
     this.as.getAll(customer.id).subscribe(
       value => {
         // @ts-ignore
-        this.address = `${value[0].homeNo} ${value[0].street} street, ${value[0].city} city, ${value[0].district} district`;
+        this.address = `${value.homeNo} ${value.street} street, ${value.city} city, ${value.district} district`;
       }
     )
   }

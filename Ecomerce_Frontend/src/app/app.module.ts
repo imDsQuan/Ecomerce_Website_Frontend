@@ -23,6 +23,7 @@ import { OrderComponent } from './components/admin/order/order.component';
 import {EditOrderComponent} from "./components/admin/edit-order/edit-order.component";
 import { CustomerComponent } from './components/admin/customer/customer.component';
 import { EditCustomerComponent } from './components/admin/edit-customer/edit-customer.component';
+import { OrderItemsComponent } from './shared/order-items/order-items.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { EditCustomerComponent } from './components/admin/edit-customer/edit-cus
     EditOrderComponent,
     CustomerComponent,
     EditCustomerComponent,
+    OrderItemsComponent,
 
   ],
   imports: [

@@ -26,13 +26,15 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-      const totalCus = this.cs.total();
-      const totalOr = this.os.totalOrder();
-      const totalProfit = this.os.totalProfit();
-      const recent = this.os.recentOrder();
-      const totalProduct = this.ps.total();
-      const topSale = this.ps.topSale();
-    forkJoin([totalCus, totalOr, totalProfit, recent, totalProduct, topSale]).subscribe(
+
+    forkJoin([
+      this.cs.total(),
+      this.os.totalOrder(),
+      this.os.totalProfit(),
+      this.os.recentOrder(),
+      this.ps.total(),
+      this.ps.topSale(),
+    ]).subscribe(
       results =>{
         this.totalCustomer = results[0];
         this.totalOrder = results[1];
