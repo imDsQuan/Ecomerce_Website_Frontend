@@ -13,13 +13,16 @@ import {
 import {AdminBeforeLoginService} from "./services/admin-before-login.service";
 import {AdminAfterLoginService} from "./services/admin-after-login.service";
 import {ProductsComponent} from "./components/admin/products/products.component";
-import {CreateProductComponent} from "./components/admin/create-product/create-product.component";
-import {CreateOrderComponent} from "./components/admin/create-order/create-order.component";
+import {CreateProductComponent} from "./components/admin/products/create-product/create-product.component";
+import {CreateOrderComponent} from "./components/admin/order/create-order/create-order.component";
 import {OrderComponent} from "./components/admin/order/order.component";
-import {EditOrderComponent} from "./components/admin/edit-order/edit-order.component";
-import {EditProductComponent} from "./components/admin/edit-product/edit-product.component";
+import {EditOrderComponent} from "./components/admin/order/edit-order/edit-order.component";
+import {EditProductComponent} from "./components/admin/products/edit-product/edit-product.component";
 import {CustomerComponent} from "./components/admin/customer/customer.component";
-import {EditCustomerComponent} from "./components/admin/edit-customer/edit-customer.component";
+import {EditCustomerComponent} from "./components/admin/customer/edit-customer/edit-customer.component";
+import {DiscountComponent} from "./components/admin/discount/discount.component";
+import {CreateDiscountComponent} from "./components/admin/discount/create-discount/create-discount.component";
+import {EditDiscountComponent} from "./components/admin/discount/edit-discount/edit-discount.component";
 
 const routes: Routes = [
   {
@@ -92,18 +95,31 @@ const routes: Routes = [
     canActivate: [AdminBeforeLoginService]
 
   },
-
   {
     path: 'admin/request-password-reset',
     component: RequestResetPasswordComponent,
     canActivate: [AdminBeforeLoginService]
-
   },
   {
     path: 'admin/response-password-reset',
     component: ResponseResetPasswordComponent,
     canActivate: [AdminBeforeLoginService]
 
+  },
+  {
+    path: 'admin/discount',
+    component: DiscountComponent,
+    canActivate: [AdminAfterLoginService]
+  },
+  {
+    path: 'admin/discount/create',
+    component: CreateDiscountComponent,
+    canActivate: [AdminAfterLoginService]
+  },
+  {
+    path: 'admin/discount/edit/:id',
+    component: EditDiscountComponent,
+    canActivate: [AdminAfterLoginService]
   },
 ];
 

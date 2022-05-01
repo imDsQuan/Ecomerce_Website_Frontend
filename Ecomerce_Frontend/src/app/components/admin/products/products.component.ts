@@ -42,4 +42,9 @@ export class ProductsComponent implements OnInit {
     );
   }
 
+  onSearchProductClick($event: any) {
+    this.products = [$event];
+    let searchData = document.querySelector(".search-data");
+    (searchData as HTMLElement).style.display = "none";
+  }
 }

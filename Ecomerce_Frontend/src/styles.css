@@ -907,7 +907,7 @@ nav .sidebar-button i {
 .home-section nav .search-field {
   position: relative;
   height: 50px;
-  max-width: 550px;
+  min-width: 350px;
   width: 100%;
   margin: 0 20px;
 }

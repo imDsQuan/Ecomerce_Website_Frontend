@@ -5,13 +5,9 @@
       <i class='bx bx-menu sidebarBtn'></i>
       <span class="dashboard">Dashboard</span>
     </div>
-    <div class="search-field">
-      <input type="text" placeholder="Search...">
-      <i class='bx bx-search'></i>
-    </div>
     <div class="profile-details">
       <img src="assets/images/img.png" alt="">
-      <span class="admin_name">Sy Quan</span>
+      <span class="admin_name">Admin</span>
       <i class='bx bx-chevron-down'></i>
     </div>
   </nav>
@@ -64,12 +60,10 @@
           <ul class="details">
             <li class="topic">Sales</li>
             <li *ngFor="let order of orderRecent"><a>{{order.status}}</a></li>
-
           </ul>
           <ul class="details">
             <li class="topic">Total</li>
             <li *ngFor="let order of orderRecent"><a>${{order.total}}</a></li>
-
           </ul>
         </div>
         <div class="button">

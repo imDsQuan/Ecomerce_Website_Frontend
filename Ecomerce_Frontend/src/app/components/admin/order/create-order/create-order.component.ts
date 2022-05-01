@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from "../../../interfaces/product";
-import {ProductService} from "../../../services/product.service";
+import {Product} from "../../../../interfaces/product";
+import {ProductService} from "../../../../services/product.service";
 import {debounceTime, distinctUntilChanged} from "rxjs";
-import {CustomerService} from "../../../services/customer.service";
-import {OrderItem} from "../../../interfaces/order-item";
-import {AddressService} from "../../../services/address.service";
-import {DeliveryServiceService} from "../../../services/delivery-service.service";
+import {CustomerService} from "../../../../services/customer.service";
+import {OrderItem} from "../../../../interfaces/order-item";
+import {AddressService} from "../../../../services/address.service";
+import {DeliveryServiceService} from "../../../../services/delivery-service.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {OrderService} from "../../../services/order.service";
+import {OrderService} from "../../../../services/order.service";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 
@@ -78,24 +78,7 @@ export class CreateOrderComponent implements OnInit {
 
   }
 
-  onSearchProduct(event : Event) {
-    let searchData = document.querySelector(".search-data");
-    // @ts-ignore
-    if (event.target.value ){
-      (searchData as HTMLElement).style.display = "block";
-      // @ts-ignore
-      this.ps.getProduct(event.target.value).pipe(
-        debounceTime(1000), distinctUntilChanged())
-        .subscribe(value => {
-          // @ts-ignore
-            this.searchProducts = value
-        },
-        error => console.log(error)
-        );
-    } else{
-      (searchData as HTMLElement).style.display = "none";
-    }
-  }
+
 
   onSearchProductClick(product: any) {
     let ok = false;
@@ -189,7 +172,7 @@ export class CreateOrderComponent implements OnInit {
     this.as.getAll(customer.id).subscribe(
       value => {
         // @ts-ignore
-        this.address = `${value.homeNo} ${value.street} street, ${value.city} city, ${value.district} district`;
+        this.address = `${value[0].homeNo} ${value[0].street} street, ${value[0].city} city, ${value[0].district} district`;
       }
     )
   }

@@ -16,14 +16,19 @@ import {AdminSignupComponent} from "./components/admin/admin-signup/admin-signup
 import {AdminUserService} from "./services/admin-user.service";
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ProductsComponent } from './components/admin/products/products.component';
-import { CreateProductComponent } from './components/admin/create-product/create-product.component';
-import { EditProductComponent } from './components/admin/edit-product/edit-product.component';
-import { CreateOrderComponent } from './components/admin/create-order/create-order.component';
+import { CreateProductComponent } from './components/admin/products/create-product/create-product.component';
+import { EditProductComponent } from './components/admin/products/edit-product/edit-product.component';
+import { CreateOrderComponent } from './components/admin/order/create-order/create-order.component';
 import { OrderComponent } from './components/admin/order/order.component';
-import {EditOrderComponent} from "./components/admin/edit-order/edit-order.component";
+import { EditOrderComponent} from "./components/admin/order/edit-order/edit-order.component";
 import { CustomerComponent } from './components/admin/customer/customer.component';
-import { EditCustomerComponent } from './components/admin/edit-customer/edit-customer.component';
+import { EditCustomerComponent } from './components/admin/customer/edit-customer/edit-customer.component';
 import { OrderItemsComponent } from './shared/order-items/order-items.component';
+import { SearchProductComponent } from './shared/search-product/search-product.component';
+import { DiscountComponent } from './components/admin/discount/discount.component';
+import { SearchCustomerComponent } from './shared/search-customer/search-customer.component';
+import { CreateDiscountComponent} from "./components/admin/discount/create-discount/create-discount.component";
+import { EditDiscountComponent } from './components/admin/discount/edit-discount/edit-discount.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +51,11 @@ import { OrderItemsComponent } from './shared/order-items/order-items.component'
     CustomerComponent,
     EditCustomerComponent,
     OrderItemsComponent,
+    SearchProductComponent,
+    DiscountComponent,
+    SearchCustomerComponent,
+    CreateDiscountComponent,
+    EditDiscountComponent,
 
   ],
   imports: [
