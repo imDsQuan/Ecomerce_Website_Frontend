@@ -54,11 +54,8 @@ export class CreateOrderComponent implements OnInit {
         'street' : null,
         'city' : null,
         'district' : null,
-
       }
     );
-
-
   }
 
   getDeliveryService(){
@@ -69,15 +66,6 @@ export class CreateOrderComponent implements OnInit {
       }
     );
   }
-
-  incrementValue($event: MouseEvent) {
-
-  }
-
-  decrementValue($event: MouseEvent) {
-
-  }
-
 
 
   onSearchProductClick(product: any) {

@@ -23,11 +23,31 @@ import {EditCustomerComponent} from "./components/admin/customer/edit-customer/e
 import {DiscountComponent} from "./components/admin/discount/discount.component";
 import {CreateDiscountComponent} from "./components/admin/discount/create-discount/create-discount.component";
 import {EditDiscountComponent} from "./components/admin/discount/edit-discount/edit-discount.component";
+import {ProductPageComponent} from "./components/home/product-page/product-page.component";
+import {ProductDetailComponent} from "./components/home/product-detail/product-detail.component";
+import {CartComponent} from "./components/home/cart/cart.component";
+import {PlaceOrderComponent} from "./components/home/place-order/place-order.component";
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+  },
+  {
+    path: 'product',
+    component: ProductPageComponent,
+  },
+  {
+    path: 'product/:id',
+    component: ProductDetailComponent,
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+  },
+  {
+    path: 'order',
+    component: PlaceOrderComponent,
   },
   {
     path: 'admin',

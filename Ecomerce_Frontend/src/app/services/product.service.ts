@@ -20,7 +20,7 @@ export class ProductService {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
-  getProduct(name: string){
+  getProduct(name: any){
     // @ts-ignore
     return this.http.post(`${this.baseUrl}/search?name=${name}`);
   }
@@ -39,6 +39,14 @@ export class ProductService {
 
   topSale(){
     return this.http.get(`${this.baseUrl}/profit`)
+  }
+
+  getFeatureProduct() {
+    return this.http.get(`${this.baseUrl}/feature`)
+  }
+
+  getLatestProduct(){
+    return this.http.get(`${this.baseUrl}/latest`)
   }
 
 }
