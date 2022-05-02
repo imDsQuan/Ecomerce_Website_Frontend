@@ -42,4 +42,7 @@ export class CustomerService {
   }
 
 
+  getLatestCustomer() {
+    return this.http.get(`${this.baseUrl}/latest`)
+  }
 }

@@ -3,6 +3,8 @@ import {CartService} from "../../../services/cart.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {OrderService} from "../../../services/order.service";
 import {CustomerService} from "../../../services/customer.service";
+import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-place-order',
@@ -20,6 +22,8 @@ export class PlaceOrderComponent implements OnInit {
     private fb: FormBuilder,
     private os: OrderService,
     private cs: CustomerService,
+    private toast: ToastrService,
+    private route: Router,
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +46,7 @@ export class PlaceOrderComponent implements OnInit {
         this.total = this.totalCart(data);
         this.orderList = data;
         for (let i = 0; i < this.orderList.length; i++){
-          this.orderList[i].product = this.orderList[i];
+          this.orderList[i].product = {'id' : this.orderList[i].id};
           this.orderList[i].price = this.orderList[i].discount_price?  this.orderList[i].discount_price : this.orderList[i].price;
           this.orderList[i].quantity = this.orderList[i].qnt;
         }
@@ -65,15 +69,40 @@ export class PlaceOrderComponent implements OnInit {
   onSubmit() {
     console.log(this.createCustomerForm.value);
     // @ts-ignore
-    let payment = document.querySelector('input[name="paymentMethod"]:checked').value;
 
     const formData = new FormData();
 
     this.cs.createCustomer(this.createCustomerForm.value).subscribe(
       data => {
-
+        this.cs.getLatestCustomer().subscribe(
+          customer => {
+            const formData = new FormData();
+            console.log(JSON.stringify(this.orderList));
+            formData.append('order_items', JSON.stringify(this.orderList));
+            // @ts-ignore
+            formData.append('customer', customer.id);
+            formData.append('address', `${this.createCustomerForm} ${this.createCustomerForm.get('street')?.value} Street, ${this.createCustomerForm.get('city')?.value} City, ${this.createCustomerForm.get('district')?.value} District`);
+            formData.append('deliveryService', '1');
+            // @ts-ignore
+            formData.append('name', customer.first_name + ' ' + customer.last_name);
+            formData.append('tel', this.createCustomerForm.get('tel')?.value);
+            formData.append('total', this.total);
+            // @ts-ignore
+            let payment = document.querySelector('input[name="paymentMethod"]:checked').value;
+            formData.append('payment_method', payment);
+            this.os.createOrder(formData).subscribe(
+              data => this.handleRespone(data),
+              error=>console.log(error),
+            );
+          }
+        )
       }
     )
 
+  }
+
+  handleRespone(data: Object) {
+      this.toast.success('Successfully Place An Order!');
+      this.route.navigateByUrl('/');
   }
 }
