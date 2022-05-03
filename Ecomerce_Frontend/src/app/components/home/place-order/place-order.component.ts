@@ -81,7 +81,7 @@ export class PlaceOrderComponent implements OnInit {
             formData.append('order_items', JSON.stringify(this.orderList));
             // @ts-ignore
             formData.append('customer', customer.id);
-            formData.append('address', `${this.createCustomerForm} ${this.createCustomerForm.get('street')?.value} Street, ${this.createCustomerForm.get('city')?.value} City, ${this.createCustomerForm.get('district')?.value} District`);
+            formData.append('address', `${this.createCustomerForm.get('homeNo')?.value} ${this.createCustomerForm.get('street')?.value} Street, ${this.createCustomerForm.get('city')?.value} City, ${this.createCustomerForm.get('district')?.value} District`);
             formData.append('deliveryService', '1');
             // @ts-ignore
             formData.append('name', customer.first_name + ' ' + customer.last_name);
@@ -102,6 +102,8 @@ export class PlaceOrderComponent implements OnInit {
   }
 
   handleRespone(data: Object) {
+      localStorage.removeItem('localCart');
+      this.ca.updateCart(null);
       this.toast.success('Successfully Place An Order!');
       this.route.navigateByUrl('/');
   }
